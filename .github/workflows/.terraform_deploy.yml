@@ -1,0 +1,53 @@
+name: Deploy Infrastructure
+
+on:
+  push:
+    # branches:
+    #   - master
+
+jobs:
+
+  plan_and_apply:
+    name: Plan and Apply
+    runs-on: ubuntu-20.04
+    defaults:
+      working-directory: terraform/
+    steps:
+
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.1.7
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-region: ${{ secrets.AWS_REGION }}
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    - name: Terraform Init
+      id: init
+      run: terraform init
+
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate
+
+    - name: Terraform Plan
+      id: plan
+      continue-on-error: true
+      run: |
+        terraform plan -input=false -no-color -out=tfplan \
+        && terraform show -no-color tfplan 
+
+    - name: Apply Terraform
+      if: steps.plan.outcome == 'success'
+      id: apply
+      continue-on-error: true
+      run: |
+        terraform apply -input=false -no-color tfplan 
+    
