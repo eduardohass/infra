@@ -1,11 +1,11 @@
-name: Deploy Infrastructure
+name: Deploy Backend
 
 on:
   push:
     # branches:
     #   - master
-  paths:
-      - terraform/**
+    paths:
+      - terraform_backend/**
 
 jobs:
 
@@ -13,7 +13,7 @@ jobs:
     name: Plan and Apply
     runs-on: ubuntu-20.04
     defaults:
-      working-directory: terraform/
+      working-directory: terraform_backend/
     steps:
 
     - name: Check out code
