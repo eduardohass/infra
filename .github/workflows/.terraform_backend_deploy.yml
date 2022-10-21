@@ -6,6 +6,7 @@ on:
     - terraform
     paths:
     - terraform_backend
+  workflow_dispatch:
 
 jobs:
 
