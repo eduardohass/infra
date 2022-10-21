@@ -2,8 +2,8 @@ name: Deploy Infrastructure
 
 on:
   push:
-    # branches:
-    #   - master
+    branches:
+      - terraform
   paths:
       - terraform/**
 
