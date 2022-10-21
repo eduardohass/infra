@@ -1,11 +1,11 @@
 name: Deploy Backend
 
-on: [push]
-  # push:
-  #   branches:
-  #     - terraform
-  #   paths:
-  #     - terraform_backend/**
+on:
+  push:
+    branches:
+    - terraform
+    paths:
+    - terraform_backend
 
 jobs:
 

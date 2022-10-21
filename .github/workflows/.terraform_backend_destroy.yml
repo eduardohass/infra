@@ -1,11 +1,6 @@
 name: Destroy !! Backend
 
-on: [push]
-  # push:
-  #   branches:
-  #     - terraform
-  #   paths:
-  #     - terraform_backend/**
+on: [workflow_dispatch]
 
 jobs:
 
