@@ -15,6 +15,7 @@ jobs:
     defaults:
       run:
         working-directory: terraform_backend/
+        
     steps:
 
     - name: Check out code
