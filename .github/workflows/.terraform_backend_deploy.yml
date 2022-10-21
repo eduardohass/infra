@@ -1,11 +1,11 @@
 name: Deploy Backend
 
-on:
-  push:
-    branches:
-      - terraform
-    paths:
-      - terraform_backend/**
+on: [push]
+  # push:
+  #   branches:
+  #     - terraform
+  #   paths:
+  #     - terraform_backend/**
 
 jobs:
 
@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-20.04
     defaults:
       run:
-        working-directory: terraform_backend/
-        
+        working-directory: ./terraform_backend
+
     steps:
 
     - name: Check out code
