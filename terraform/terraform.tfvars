@@ -1,1 +1,0 @@
-sns_topic_subscription_email = "eduardo.comphass@gmail.com"
